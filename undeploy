@@ -6,5 +6,10 @@ if [ "$1" == "" ]; then
     exit 1
 fi
 
+if [ ! -f "/usr/local/bin/sites_shutdown.sh" ]; then
+    cp sites_shutdown.sh /usr/local/bin/sites_shutdown.sh
+fi
+
 stow -vv -D -t .. $1
+/usr/local/bin/sites_shutdown.sh $1
 
