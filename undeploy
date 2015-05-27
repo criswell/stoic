@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "" ]; then
+    echo "Usage:"
+    echo " undeploy <DIR>"
+    exit 1
+fi
+
+stow -vv -D -t .. $1
+

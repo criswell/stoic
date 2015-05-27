@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "" ]; then
+    echo "Usage:"
+    echo " deploy <DIR>"
+    exit 1
+fi
+
+# We copy the script over if it's not there, we do this no matter what
+if [ ! -f "/usr/local/bin/sites_startup.sh" ]; then
+    cp sites_startup.sh /usr/local/bin/sites_startup.sh
+fi
+
+stow -vv -R -t .. $1
+/usr/local/bin/sites_startup.sh $1
+
