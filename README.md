@@ -136,8 +136,8 @@ where `[SITENAME]` is the same name as the site's package directory.
 So, for our site, `sample`, we would create the following scripts:
 
 ```
-sample/usr/local/bin/site_shutdown-sample.sh
-sample/usr/local/bin/site_startup-sample.sh
+sites/sample/usr/local/bin/site_shutdown-sample.sh
+sites/sample/usr/local/bin/site_startup-sample.sh
 ```
 
 Inside these scripts we place any commands which we want to have executed upon
