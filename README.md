@@ -46,12 +46,16 @@ $ hg init sites
 
 Next, you will want to add the `deploy` and `undeploy` scripts. They can be
 found in the root of this tutorial's repository. These scripts manage the
-deployment and undeployment (respectively) of the sites in your site repo.
+deployment and undeployment (respectively) of the sites in your site repo. You
+also want to add the `site_startup.sh` and `site_shutdown.sh` scripts, which
+are helper scripts for `deploy` and `undeploy`.
 
 ```
 $ cd sites/
 $ cp ~/stoic/deploy .
 $ cp ~/stoic/undeploy .
+$ cp ~/stoic/site_startup.sh .
+$ cp ~/stoic/site_shutdown.sh .
 $ hg add .
 $ hg commit -m "Adding deploy/undeploy scripts"
 ```
@@ -107,5 +111,41 @@ like the sample config included in this tutorial's repo:
 
 * [sample.foo.bar.conf](sample/etc/apache2/sites-enabled/sample.foo.bar.conf)
 
+Add your configuration file to your repo:
+
+```
 sites/sample/etc/apache2/sites-enabled/sample.foo.bar.conf
-sites/sample/etc/apache2/sites-enabled/sample.foo.bar.conf
+```
+
+## Add your startup/shutdown scripts
+
+`deploy` and `undeploy` execute `site_startup.sh` and `site_shutdown.sh`
+(respectively) during site startup and shutdown. These scripts, in turn, try
+to execute site specific startup/shutdown scripts which can be defined for
+each site.
+
+These scripts should be named:
+
+```
+site_startup-[SITENAME].sh
+site_shutdown-[SITENAME].sh
+```
+
+where `[SITENAME]` is the same name as the site's package directory.
+
+So, for our site, `sample`, we would create the following scripts:
+
+```
+sample/usr/local/bin/site_shutdown-sample.sh
+sample/usr/local/bin/site_startup-sample.sh
+```
+
+Inside these scripts we place any commands which we want to have executed upon
+startup and shutdown. For example, we may wish to reload our Apache
+configuration:
+
+```bash
+#!/bin/bash
+
+systemctl reload apache2
+```
