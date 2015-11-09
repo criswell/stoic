@@ -149,3 +149,20 @@ configuration:
 
 systemctl reload apache2
 ```
+
+## Commit and push to remote server or repo
+
+Now, make sure every change has been committed, and push your repository to
+a remote server or host. For example, you might want to store your site's
+repo on Github or Bitbucket.
+
+## Deploy on web server
+
+Finally, on your web server, clone the repository and deploy your site with
+the following commands:
+
+```
+$ hg clone ssh://user@host.com//path/to/repo/sites
+$ cd sites
+$ deploy sample
+```
