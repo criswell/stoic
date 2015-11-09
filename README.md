@@ -105,7 +105,7 @@ files.
 Again, assuming we're using Apache, our configuration might look something
 like the sample config included in this tutorial's repo:
 
-* [sample/etc/apache2/sites-enabled/sample.foo.bar.conf](sample.foo.bar.conf)
+* [sample.foo.bar.conf](sample/etc/apache2/sites-enabled/sample.foo.bar.conf)
 
 sites/sample/etc/apache2/sites-enabled/sample.foo.bar.conf
 sites/sample/etc/apache2/sites-enabled/sample.foo.bar.conf
